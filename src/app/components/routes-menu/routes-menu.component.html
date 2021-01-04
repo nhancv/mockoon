@@ -9,28 +9,45 @@
       </li>
     </ul>
 
-    <ul class="nav flex-column menu-list" #routesMenu dragula="routes"
-      [dragulaModel]="activeEnvironment.routes">
-      <li class="nav-item" *ngFor="let environmentRoute of activeEnvironment.routes">
-        <a class="nav-link" [ngClass]="{'active': (activeRoute$ | async)?.uuid === environmentRoute.uuid, 'route-disabled': !environmentRoute.enabled}"
-          (click)="selectRoute(environmentRoute.uuid)"
-          (contextmenu)="openContextMenu(environmentRoute.uuid, $event)">
-          <div *ngIf="settings$ | async as settings" class="route-path" [ngClass]="{'ellipsis': settings.truncateRouteName, 'text-break': !settings.truncateRouteName}">
-            <span *ngIf="duplicatedRoutes$ | async as duplicatedRoutes" class="text-warning"
-              ngbTooltip="Route is duplicated (same endpoint and method)">
-              <i *ngIf="duplicatedRoutes[activeEnvironment.uuid]?.has(environmentRoute.uuid)"
-                class="material-icons">warning</i>
-            </span>
-            <span
-              class="badge badge-default http-method-{{environmentRoute.method}} float-right">{{environmentRoute.method | uppercase}}</span>
-              /{{environmentRoute.endpoint}}
-          </div>
-          <div class="menu-subtitle ellipsis">
-            {{environmentRoute.documentation}}
-          </div>
-        </a>
-      </li>
-    </ul>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text pl-0">Filter</span>
+        </div>
+        <input
+          type="text"
+          class="form-control col-4"
+          id="route-search"
+          placeholder="Filter"
+          [formControl]="routeFilter"
+        />
+      </div>
+    </div>
+
+    <ng-container *ngIf="routeList$ | async as routeList">
+      <ul class="nav flex-column menu-list" #routesMenu dragula="routes"
+        [dragulaModel]="routeList">
+        <li class="nav-item" *ngFor="let environmentRoute of routeList">
+          <a class="nav-link" [ngClass]="{'active': (activeRoute$ | async)?.uuid === environmentRoute.uuid, 'route-disabled': !environmentRoute.enabled}"
+            (click)="selectRoute(environmentRoute.uuid)"
+            (contextmenu)="openContextMenu(environmentRoute.uuid, $event)">
+            <div *ngIf="settings$ | async as settings" class="route-path" [ngClass]="{'ellipsis': settings.truncateRouteName, 'text-break': !settings.truncateRouteName}">
+              <span *ngIf="duplicatedRoutes$ | async as duplicatedRoutes" class="text-warning"
+                ngbTooltip="Route is duplicated (same endpoint and method)">
+                <i *ngIf="duplicatedRoutes[activeEnvironment.uuid]?.has(environmentRoute.uuid)"
+                  class="material-icons">warning</i>
+              </span>
+              <span
+                class="badge badge-default http-method-{{environmentRoute.method}} float-right">{{environmentRoute.method | uppercase}}</span>
+                /{{environmentRoute.endpoint}}
+            </div>
+            <div class="menu-subtitle ellipsis">
+              {{environmentRoute.documentation}}
+            </div>
+          </a>
+        </li>
+      </ul>
+    </ng-container>
 
     <resize-column type="routeMenu" [minWidth]="200" [maxWidthFactor]="0.25"></resize-column>
   </div>
