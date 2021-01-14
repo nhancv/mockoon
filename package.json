@@ -68,7 +68,7 @@
     "@angular/platform-browser-dynamic": "9.1.13",
     "@angular/router": "9.1.13",
     "@apidevtools/swagger-parser": "9.0.1",
-    "@ng-bootstrap/ng-bootstrap": "5.3.0",
+    "@ng-bootstrap/ng-bootstrap": "6.1.0",
     "@types/chai": "4.2.11",
     "@types/chai-as-promised": "7.1.2",
     "@types/electron-json-storage": "4.0.0",
