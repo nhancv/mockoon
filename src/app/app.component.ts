@@ -78,9 +78,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild('changelogModal', { static: false })
+  @ViewChild('changelogModal')
   public changelogModal: ChangelogModalComponent;
-  @ViewChild('settingsModal', { static: false })
+  @ViewChild('settingsModal')
   public settingsModal: SettingsModalComponent;
   public activeEnvironment$: Observable<Environment>;
   public activeEnvironmentForm: FormGroup;

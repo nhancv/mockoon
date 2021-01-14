@@ -23,7 +23,7 @@ import { EnvironmentsStatuses, Store, UIState } from 'src/app/stores/store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EnvironmentsMenuComponent implements OnInit {
-  @ViewChild('environmentsMenu', { static: false })
+  @ViewChild('environmentsMenu')
   private environmentsMenu: ElementRef;
 
   public activeEnvironment$: Observable<Environment>;

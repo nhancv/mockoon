@@ -19,7 +19,7 @@ import { EventsService } from 'src/app/services/events.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditorModalComponent implements OnInit, AfterViewInit {
-  @ViewChild('modal', { static: false })
+  @ViewChild('modal')
   public modal: ElementRef;
   public data$ = new BehaviorSubject<EditorModalData>(null);
   private defaultEditorConfig = {

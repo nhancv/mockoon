@@ -16,7 +16,7 @@ import { Environment, Route } from '@mockoon/commons';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RoutesMenuComponent implements OnInit {
-  @ViewChild('routesMenu', { static: false }) private routesMenu: ElementRef;
+  @ViewChild('routesMenu') private routesMenu: ElementRef;
   public settings$: Observable<Settings>;
   public activeEnvironment$: Observable<Environment>;
   public activeRoute$: Observable<Route>;
