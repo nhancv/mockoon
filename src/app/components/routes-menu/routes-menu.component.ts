@@ -8,6 +8,7 @@ import { EventsService } from 'src/app/services/events.service';
 import { UIService } from 'src/app/services/ui.service';
 import { DuplicatedRoutesTypes, EnvironmentsStatuses, Store } from 'src/app/stores/store';
 import { Environment, Route } from '@mockoon/commons';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-routes-menu',
@@ -40,6 +41,19 @@ export class RoutesMenuComponent implements OnInit {
     this.uiService.scrollRoutesMenu.subscribe((scrollDirection) => {
       this.uiService.scroll(this.routesMenu.nativeElement, scrollDirection);
     });
+  }
+
+  /**
+   * Callback called when reordering routes
+   *
+   * @param event
+   */
+  public reorderRoutes(event: CdkDragDrop<string[]>) {
+    this.environmentsService.moveMenuItem(
+      'routes',
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 
   /**

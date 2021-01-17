@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -21,7 +22,6 @@ import {
 import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ipcRenderer, remote, shell } from 'electron';
 import { lookup as mimeTypeLookup } from 'mime-types';
-import { DragulaService } from 'ng2-dragula';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -47,7 +47,6 @@ import {
   EnvironmentLogs
 } from 'src/app/models/environment-logs.model';
 import { Toast } from 'src/app/models/toasts.model';
-import { DraggableContainerNames } from 'src/app/models/ui.model';
 import { AnalyticsService } from 'src/app/services/analytics.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { EnvironmentsService } from 'src/app/services/environments.service';
@@ -119,7 +118,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     private analyticsService: AnalyticsService,
     private authService: AuthService,
     private config: NgbTooltipConfig,
-    private dragulaService: DragulaService,
     private environmentsService: EnvironmentsService,
     private eventsService: EventsService,
     private formBuilder: FormBuilder,
@@ -164,14 +162,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.logger.info('Initializing application');
 
-    this.dragulaService.dropModel().subscribe((dragResult) => {
-      this.environmentsService.moveMenuItem(
-        dragResult.name as DraggableContainerNames,
-        dragResult.sourceIndex,
-        dragResult.targetIndex
-      );
-    });
-
     this.initForms();
 
     // auth anonymously through firebase
@@ -203,6 +193,19 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.ipcService.init(this.changelogModal, this.settingsModal);
+  }
+
+  /**
+   * Callback called when reordering route responses
+   *
+   * @param event
+   */
+  public reorderRouteResponses(event: CdkDragDrop<string[]>) {
+    this.environmentsService.moveMenuItem(
+      'routeResponses',
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 
   /**

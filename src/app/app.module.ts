@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
@@ -8,7 +9,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor';
-import { DragulaModule } from 'ng2-dragula';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { BannerComponent } from 'src/app/components/banner.component';
 import { ChangelogModalComponent } from 'src/app/components/changelog-modal.component';
@@ -59,7 +59,7 @@ import { AppComponent } from './app.component';
     AceEditorModule,
     BrowserAnimationsModule,
     BrowserModule,
-    DragulaModule.forRoot(),
+    DragDropModule,
     FormsModule,
     HttpClientModule,
     NgbModule,

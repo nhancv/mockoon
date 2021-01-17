@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -73,6 +74,19 @@ export class EnvironmentsMenuComponent implements OnInit {
         scrollDirection
       );
     });
+  }
+
+  /**
+   * Callback called when reordering environments
+   *
+   * @param event
+   */
+  public reorderEnvironments(event: CdkDragDrop<string[]>) {
+    this.environmentsService.moveMenuItem(
+      'environments',
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 
   /**
