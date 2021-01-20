@@ -31,7 +31,7 @@ export class EditorModalComponent implements OnInit, AfterViewInit {
       useWorker: true
     },
     mode: 'json',
-    theme: 'custom_theme'
+    theme: 'editor-theme'
   };
 
   constructor(

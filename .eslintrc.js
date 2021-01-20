@@ -74,7 +74,8 @@ module.exports = {
       'error',
       {
         selector: 'memberLike',
-        format: ['camelCase', 'UPPER_CASE', 'StrictPascalCase', 'snake_case']
+        format: ['camelCase', 'UPPER_CASE', 'StrictPascalCase', 'snake_case'],
+        leadingUnderscore: 'allow'
       }
     ],
     '@typescript-eslint/no-empty-function': 'off',

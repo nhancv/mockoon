@@ -423,10 +423,13 @@
                       </app-title-separator>
 
                       <div class="flex-fill" *ngIf="bodyEditorConfig$ | async as bodyEditorConfig">
-                        <ace-editor class="h-100" [options]="bodyEditorConfig?.options"
-                          [mode]="bodyEditorConfig?.mode" [theme]="bodyEditorConfig?.theme"
-                          [text]="activeRouteResponseForm.get('body').value"
-                          (textChanged)="activeRouteResponseForm.get('body').setValue($event)"></ace-editor>
+                        <app-editor
+                          class="h-100"
+                          [options]="bodyEditorConfig?.options"
+                          [mode]="bodyEditorConfig?.mode"
+                          [theme]="bodyEditorConfig?.theme"
+                          formControlName="body">
+                        </app-editor>
                       </div>
                     </div>
                   </div>
