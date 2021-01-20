@@ -26,6 +26,15 @@
               "path": "./scripts/extra-webpack.config.js"
             },
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "mime-types",
+              "faker",
+              "qs",
+              "http-proxy-middleware",
+              "cookie-parser",
+              "electron-log",
+              "src/app/config"
+            ],
             "assets": [
               "src/assets",
               {
