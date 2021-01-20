@@ -25,6 +25,7 @@
             "customWebpackConfig": {
               "path": "./scripts/extra-webpack.config.js"
             },
+            "aot": true,
             "assets": [
               "src/assets",
               {
