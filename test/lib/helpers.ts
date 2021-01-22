@@ -428,8 +428,6 @@ export class Helpers {
 
   public async closeModal() {
     await this.elementClick('.modal-dialog .modal-footer button');
-    // allow for animation to finish
-    await this.testsInstance.app.client.pause(500);
   }
 
   public async assertViewBodyLogButtonPresence(inverted = false) {

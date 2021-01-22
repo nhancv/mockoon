@@ -19,7 +19,7 @@ import {
   Route,
   RouteResponse
 } from '@mockoon/commons';
-import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbConfig, NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ipcRenderer, remote, shell } from 'electron';
 import { lookup as mimeTypeLookup } from 'mime-types';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
@@ -126,8 +126,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     private toastService: ToastsService,
     private uiService: UIService,
     private ipcService: IpcService,
-    private storageService: StorageService
-  ) {}
+    private storageService: StorageService,
+    private ngbConfig: NgbConfig
+  ) {
+    this.ngbConfig.animation = false;
+  }
 
   // Listen to widow beforeunload event, and verify that no data saving is in progress
   @HostListener('window:beforeunload', ['$event'])
